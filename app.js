@@ -11,6 +11,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use("/api", userRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Connected");
+});
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
