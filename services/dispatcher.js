@@ -4,7 +4,12 @@ const { parseInbox } = require("./parser");
 const axios = require("axios");
 
 async function runForAllUsers() {
-  const users = await User.find();
+  const users = await axios.get(
+    "https://ghl-zip-recruiter-backend.onrender.com/api/process/email-list"
+  );
+
+  console.log(users.data);
+  return;
 
   for (const user of users) {
     const webhooks = await Webhook.find({ user: user._id });
@@ -40,5 +45,7 @@ async function runForAllUsers() {
     }
   }
 }
+
+runForAllUsers();
 
 module.exports = { runForAllUsers };
