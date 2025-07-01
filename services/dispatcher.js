@@ -8,11 +8,14 @@ async function runForAllUsers() {
     "https://ghl-zip-recruiter-backend.onrender.com/api/process/email-list"
   );
 
-  console.log(users.data);
-  return;
+  for (const user of users.data) {
+    const webhooks = await axios.get(
+      `https://ghl-zip-recruiter-backend.onrender.com/api/process/webhooks/${user._id}`
+    );
 
-  for (const user of users) {
-    const webhooks = await Webhook.find({ user: user._id });
+    console.log(webhooks);
+    return;
+
     if (webhooks.length === 0) continue;
 
     let inboxData;
