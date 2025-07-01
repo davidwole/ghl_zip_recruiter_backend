@@ -13,5 +13,6 @@ router.post("/webhook/add", auth, userController.addWebhook);
 router.delete("/webhook/delete/:id", auth, userController.deleteWebhook);
 router.get("/webhooks", auth, userController.getWebhooks);
 router.get("/webhooks/:id", auth, userController.getWebhooksByUser);
+router.get("/process/webhooks/:id", userController.getWebhooksByUser);
 
 module.exports = router;
